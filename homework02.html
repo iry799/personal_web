@@ -1,0 +1,76 @@
+<html lang="en"><head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- 219970126 沈琪闲 -->
+
+    <script>
+        var inPutnumber = prompt("请输入打印图形的行数：（警告：菱形双数会变形）"); //对输入的自定义字符进行赋值
+        var n = inPutnumber;
+
+        for (var j = 0; j < n; j++) { //外循环控制行的变换
+            for (var i = (n - 1); i > j; i--) { //控制空格与*号的表示
+
+                document.write("&nbsp;");
+            }
+            for (var a = 0; a <= j; a++) { //该循环控制列的变换
+
+                document.write("* ")
+            } //br是换行标签
+
+            document.write("<br/>");
+        }
+    </script>
+
+    <script>
+        for (var m = 0; m < n; m++) {
+            for (var p = (n - 1); p > m; p--) {
+                document.write("&nbsp;");
+            }
+            for (var q = 0; q < n; q++) {
+                document.write("* ");
+            }
+            document.write("<br/>");
+        }
+    </script>
+
+    <!-- 打印菱形 -->
+
+    <script>
+        //先打印上半部分的等腰三角形 &nbsp;注意初始值的设定
+
+        for (var a = 1; a <= (n / 2 + 1); a++) {
+            for (var b = 1; b <= (n / 2 + 1) - a; b++) {
+                document.write("&nbsp;&nbsp");
+            }
+            for (var c = 1; c <= 2 * a - 1; c++) {
+                document.write("* ");
+            }
+            document.write("<br/>");
+        }
+    </script>* <br>
+
+    <script>
+        //打印菱形的下半部分两行
+        for (var d = 1; d <= (n / 2); d++) {
+            for (var e = 1; e <= d; e++) { //第一行d有1个空格，第二行d有2个空格，空格依次递加
+
+                document.write("&nbsp;&nbsp");
+            }
+            for (var f = 1; f <= n - 2 * d; f++) {
+                document.write("* ");
+            }
+            document.write("<br/>");
+        }
+    </script>
+
+
+
+</body></html>
