@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>让坦克开起来</title>
+		<style type="text/css">
+			input{font-size:26px;margin-top: 20px;}
+			body{background-image: url(img/grassland.png);}
+			#mytank{position: absolute;left:10px;top:100px}
+		</style>
+	</head>
+	<body>		
+		<img id="mytank" src="img/right.png"/>
+		<script>
+		//219970126沈琪闲
+		// 获取屏幕宽度和高度
+		let screenWidth = window.innerWidth;
+		let screenHeight = window.innerHeight;
+		//禁止鼠标右击
+		document.addEventListener('contextmenu', function (e) {
+			e.preventDefault();
+		})
+		// 获取图片元素
+		let img = document.querySelector('#mytank');
+		document.addEventListener('keydown', function (event) {
+			if (event.keyCode == 65) {
+				// 向左移动图片
+				img.setAttribute("src", "img/left.png");   //更改其src属性，将其设置为新图像的路径
+				let left = img.offsetLeft - 20;
+				if (left >= 0) {  // 判断图片左侧是否超出边界
+					img.style.left = left + "px";
+				}
+			} else if (event.keyCode == 87) {
+				// 向上移动图片
+				img.setAttribute("src", "img/up.png"); //更改其src属性，将其设置为新图像的路径
+				let top = img.offsetTop - 20;
+				if (top >= 0) {  // 判断图片顶部是否超出边界
+					img.style.top = top + "px";
+				}
+			} else if (event.keyCode == 68) {
+				// 向右移动图片
+				img.setAttribute("src", "img/right.png"); //更改其src属性，将其设置为新图像的路径
+				let right = img.offsetLeft + 20 + img.clientWidth;
+				if (right <= screenWidth) {  // 判断图片右侧是否超出边界
+					img.style.left = img.offsetLeft + 20 + "px";
+				}
+			} else if (event.keyCode == 83) {
+				// 向下移动图片
+				img.setAttribute("src", "img/down.png");  //更改其src属性，将其设置为新图像的路径
+				let bottom = img.offsetTop + 20 + img.clientHeight;
+				if (bottom <= screenHeight) {                   // 判断图片底部是否超出边界
+					img.style.top = img.offsetTop + 20 + "px";
+				}
+			}
+		})
+		</script>
+	</body>
+</html>

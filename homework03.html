@@ -1,6 +1,6 @@
 <html><head>
     <meta charset="utf-8">
-    <title>练习5：DOM操作</title>
+    <title>DOM操作</title>
     <style type="text/css">
         html,
         div,
@@ -47,32 +47,32 @@
 
 <body>
     <div id="cont_left">
-        <ul><img src="../img/fold.gif"><a onclick="show('menu1')"> 通过DOM获取信息 </a>
+        <ul><img src="img/fold.gif"><a onclick="show('menu1')"> 通过DOM获取信息 </a>
             <ul id="menu1">
-                <li onclick="showImg()"><img src="../img/doc.gif">获取原始图片路径</li>
-                <li onclick="getFruit()"><img src="../img/doc.gif">获取我喜欢的水果</li>
+                <li onclick="showImg()"><img src="img/doc.gif">获取原始图片路径</li>
+                <li onclick="getFruit()"><img src="img/doc.gif">获取我喜欢的水果</li>
             </ul>
         </ul>
 
-        <ul><img src="../img/fold.gif"><a onclick="show('menu2')"> 通过DOM操作元素 </a>
+        <ul><img src="img/fold.gif"><a onclick="show('menu2')"> 通过DOM操作元素 </a>
             <ul id="menu2">
-                <li onclick="createImg()"><img src="../img/doc.gif">创建图片</li>
-                <li onclick="cloneImg()"><img src="../img/doc.gif">克隆图片</li>
-                <li onclick="changeImg()"><img src="../img/doc.gif">改变图片</li>
-                <li onclick="removeImg()"><img src="../img/doc.gif">删除图片</li>
+                <li onclick="createImg()"><img src="img/doc.gif">创建图片</li>
+                <li onclick="cloneImg()"><img src="img/doc.gif">克隆图片</li>
+                <li onclick="changeImg()"><img src="img/doc.gif">改变图片</li>
+                <li onclick="removeImg()"><img src="img/doc.gif">删除图片</li>
             </ul>
         </ul>
-        <ul><img src="../img/fold.gif"><a onclick="show('menu3')"> 通过DOM操作样式 </a>
+        <ul><img src="img/fold.gif"><a onclick="show('menu3')"> 通过DOM操作样式 </a>
             <ul id="menu3">
-                <li onclick="changeCss1()"><img src="../img/doc.gif">为原始图片加上行间样式</li>
-                <li onclick="changeCss2()"><img src="../img/doc.gif">为所有的fieldset加上内部样式</li>
+                <li onclick="changeCss1()"><img src="img/doc.gif">为原始图片加上行间样式</li>
+                <li onclick="changeCss2()"><img src="img/doc.gif">为所有的fieldset加上内部样式</li>
             </ul>
         </ul>
 
     </div>
     <fieldset>
         <legend>原始图片</legend>
-        <img id="fruit" src="../img/fruit.jpg">
+        <img id="fruit" src="img/fruit.jpg">
     </fieldset>
     <fieldset>
         <legend>图片路径</legend>
@@ -159,19 +159,8 @@
             const newImg = document.querySelector("#msg4");
             let newnode = fruit.cloneNode(true);
             newImg.appendChild(newnode);
-            // //querySelector()方法返回文档中匹配指定CSS选择器的一个元素
-            // 	if(docment.querySelector('#msg4 img')) return;
-            // //cloneNode()方法有一个参数（true或false）该参数指示被克隆的节点是否包括原节点的所有属性
-            //	newImg.appendChild(originalImg.cloneNode(true));
-            //	newImg.style.width = '100%';
-            //	newImg.style.height = '100%';
         }
-        // //改变图片
-        // function changeImg() {
-        //     originalImg.getAttribibute('src', '../img/grape1.jpg');
-        //     originalImg.style.width = '100%';
-        //     originalImg.style.height = '100%';
-        // }
+
         //改变图片
         function changeImg() { //
             var msg5 = document.getElementById('fruit');
