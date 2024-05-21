@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Clock</title>
+</head>
+<body>
+
+<!-- 用于显示时间的 div 元素 -->
+<div id="clock"></div>
+
+<script>
+// 获取用于显示时间的DOM元素
+var clockElement = document.getElementById("clock");
+
+// 更新时钟的函数
+function updateClock() {
+    // 获取当前时间
+    var now = new Date();
+    // 格式化时间为本地时间字符串
+    var timeString = now.toLocaleTimeString();
+    // 将时间字符串设置为 clockElement 的内容
+    clockElement.textContent = timeString;
+}
+
+// 初始调用 updateClock 函数以显示初始时间
+updateClock();
+
+// 每1000毫秒调用一次 updateClock 函数
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
