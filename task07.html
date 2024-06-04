@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.color.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+</head>
+<body>
+    <button id="btn1">颜色插件测试</button>
+    <button id="btn2">辅助动画测试</button>
+    <div class="div1">
+        Hello
+    </div>
+    <script>
+        $(function(){
+            $("#btn1").click(function(){
+                $(".div1").animate({
+                    backgroundColor:"#00ff00"},3000)
+                    .animate({
+                        backgroundColor:"#ff0000"},3000)
+            })
+        })
+        $("#btn2").click(function(){
+            $(".div1").animate({
+                height:"450px"
+          },5000,"easeOutElastic")
+        })
+    </script>
+</body>
+</html>

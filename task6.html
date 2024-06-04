@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg{
+            width: 100vw;
+            height: 100vh;/* 占领整个窗口 */
+            background-color: #000;
+            position: relative;/* 相对定位 */
+            overflow: hidden;/* 隐藏出地图外部分 */   
+        }
+        .character{
+            position: absolute; /* 绝对定位 */
+        }
+    </style>
+</head>
+<body>/
+    <div class="bg">
+    <img class="character" src="img/player_right.gif" alt="">
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        alert("使用鼠标控制角色，双击变身")
+        //219970126沈琪闲
+        let character = $(".character");
+        //鼠标点击，角色移动到点击位置
+        $(".bg").on("click",function(e){//点击地图
+            let x = e.pageX-character.width()/2+'px';//鼠标点击坐标-人物宽度/2
+            let y = e.pageY-character.height()/2+'px';//鼠标点击坐标-人物高度/2
+            if(e.pageX-character.width()/2<character.offset().left){   //目标点在人物左边
+                character.attr("src","img/player_left.gif")   //修改图片路径修改人物朝向，（改路径麻烦，弃用）
+            }
+            if(e.pageX-character.width()/2>character.offset().left){    //目标点在人物右边
+                character.attr("src","img/player_right.gif")  //修改人物朝向
+            }
+            $(".character").stop().animate({left: x, top: y}, 1000);//停止之前的移动动画， 移动到点击位置
+        })
+       $(".character").on("dblclick",function(){//双击角色
+        if(character.attr("src")=='img/player_right.gif'){
+            $(".character").attr("src","img/pet.gif")//变身
+        }else{
+            $(".character").attr("src","img/player_right.gif")//解除变身
+        }
+         
+       })
+    </script>
+
+
+</body>
+</html>
