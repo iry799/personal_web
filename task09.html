@@ -1,20 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>动画注册登录页面</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- 219970126沈琪闲 -->
 <body>
-    //登录
-    <form action="/login" method="post">
-        用户名：<input type="text" name="username"><br>
-        密码：<input type="password" name="password"><br>
-        <input type="submit" value="登录">
-    </form>
-    //注册
-    <form action="/register" method="post">     
-        用户名：<input type="text" name="username"><br>
+    <div class="materialContainer">
+        <div class="box">
+            <div class="title">登录</div>
+            <div class="input">
+                <label for="name">用户名</label>
+                <input type="text" name="name" id="name">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="pass">密码</label>
+                <input type="password" name="pass" id="pass">
+                <span class="spin"></span>
+            </div>
+            <div class="button login">
+                <button>
+                    <span>登录</span>
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <a href="javascript:" class="pass-forgot">忘记密码？</a>
+        </div>
 
+        <div class="overbox"  >
+            <div class="material-button alt-2">
+                <span class="shape"></span>
+            </div>
+            <div class="title">注册</div>
+            <div class="input">
+                <label for="regname">用户名</label>
+                <input type="text" name="regname" id="regname">
+                <span class="usernameMsg" id="usernameMsg"></span>
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="regpass">密码</label>
+                <input type="password" name="regpass" id="regpass">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="reregpass">确认密码</label>
+                <input type="password" name="reregpass" id="reregpass">
+                <span class="spin"></span>
+            </div>
+            <div class="button">
+                <button id="registerBnt">
+                    <span>注册</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        document.getElementById('registerBnt').addEventListener('click', function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+            let bx = document.querySelector('.overbox');
+            // 非空验证
+            var inputs = bx.querySelectorAll('input[type=text], input[type=password]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (!inputs[i].value.trim()) {
+                    alert('所有字段都不能为空！');
+                    return;
+                }
+            }
+
+            // 账号验证
+            var regname = document.getElementById('regname').value;
+             // 正则表达式，匹配3到20位字母或数字
+            var usernameRegex = /^[a-zA-Z0-9]{3,20}$/; 
+            if (!usernameRegex.test(regname)) {
+                // 修改输入框的样式
+                alert('用户名格式不正确！');
+            } 
+
+            // 用户名长度验证
+            if (document.getElementById('regname').value.length <3 ) {
+                alert('用户名长度不能少于3位！');
+                return;
+            }
+
+            // 用户名长度验证
+            if (document.getElementById('regpass').value.length <3 ) {
+                alert('用户名长度不能少于6位！');
+                return;
+            }
+       
+            //判断输入的两次密码是否相等
+            var regpass = document.getElementById('regpass').value;
+            var reregpass = document.getElementById('reregpass').value;
+            if (regpass !== reregpass) {
+                alert('两次输入的密码不一致！');
+                return;
+            }
+        });
+    </script>
+    <script>
+        //219970126沈琪闲
+        // 获取用户名输入框
+        let username = document.querySelector("#regname");
+    
+        //监听用户名输入框的失去焦点事件
+        username.addEventListener("blur",function () {
+            //console.log("aaa");
+        
+           let usernameVal = username.value;     
+           //console.log(usernameVal);  
+            //创建xhr对象
+            let xhr = new XMLHttpRequest();
+            //调用open函数，设置请求方法和请求地址
+            xhr.open("POST","http://127.0.0.1:4523/m1/4564383-0-default/register/name")
+            //设置请求头
+            xhr.setRequestHeader("Content-Type","application/json")
+            //设置响应体数据的类型
+            xhr.responseType = "json";
+            //发送请求
+            if(usernameVal!=""&&usernameVal.length>=3){
+                xhr.send(JSON.stringify({username:usernameVal}));
+            }else{
+                //输入字符数小于6时，提示用户
+                $("#usernameMsg").css("color","red");
+                $("#usernameMsg").text("用户名长度不能小于6位");
+            }
+           
+            //
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    let result = xhr.response;
+                    console.log(result);
+                    if(result.code === 1){//mock模拟数据，当用户名等于user11时，用户已存在返回1
+                        $("#usernameMsg").css("color","black");
+                        $("#usernameMsg").text("用户名已存在");
+                    }else{
+                        $("#usernameMsg").css("color","green");
+                        $("#usernameMsg").text("用户名可用");
+                    }
+                    
+                }
+            }   
+        })
+       </script>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>

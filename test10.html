@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>注册</h2>
+        <form id="registrationForm" action="./success.html" method="get">
+            <input type="text" class="tbx" placeholder="账号" id="username">
+            <p id="usernameMsg"></p>
+            <input type="text" class="tbx" placeholder="手机号" id="phone">
+            <input type="password" class="tbx" placeholder="密码" id="password">
+            <input type="password" class="tbx" placeholder="确认密码" id="confirmPassword">
+            <input type="submit" class="sub" value="注册">
+        </form>
+    </div>
+   <script>
+    //219970126沈琪闲
+    // 获取用户名输入框
+    let username = document.querySelector("#username");
+
+    //监听用户名输入框的失去焦点事件
+    username.addEventListener("blur",function () {
+    
+       let usernameVal = username.value;       
+        //创建xhr对象
+        let xhr = new XMLHttpRequest();
+        //调用open函数，设置请求方法和请求地址
+        xhr.open("POST","http://127.0.0.1:4523/m1/4554752-0-default/register/name")
+        //设置请求头
+        xhr.setRequestHeader("Content-Type","application/json")
+        //设置响应体数据的类型
+        xhr.responseType = "json";
+        //发送请求
+        if(usernameVal!=""&&usernameVal.length>=6){
+            xhr.send(JSON.stringify({username:usernameVal}));
+        }else{
+            //输入字符数小于6时，提示用户
+            $("#usernameMsg").css("color","red");
+            $("#usernameMsg").text("用户名长度不能小于6位");
+        }
+       
+        //
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200){
+                let result = xhr.response;
+                console.log(result);
+                if(result.data === 1){//mock模拟数据，当用户名等于user11时，用户已存在返回1
+                    $("#usernameMsg").css("color","red");
+                    $("#usernameMsg").text("用户名已存在");
+                }else{
+                    $("#usernameMsg").css("color","green");
+                    $("#usernameMsg").text("用户名可用");
+                }
+                
+            }
+        }   
+    })
+   </script>
+
+</body>
+</html>

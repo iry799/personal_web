@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    输入城市查询天气
+    <input type="text" id="city">
+    <button id="btn">查询</button>
+    <div id="result"></div>
+    <div id="tupian">
+        <img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt="">
+    </div> 
+    <img id="tupian" src="" alt="">
+    <script src="js/jquery-1.7.2.min.js"></script>
+<script>
+    $("#btn").click(function(){
+        let city = $("#city").val()
+        // $.ajax({
+        //     // url:"https://www.mxnzp.com/api/weather/current/"+city+"?app_id=qwmysolgjssrtbhw&app_secret=3ms8r6qmPZLmznRt4kaj8EOmPsBRu3if",
+        //     url:" https://www.mxnzp.com/api/image/girl/list/random",
+        //     data:{
+        //         app_id:"qwmysolgjssrtbhw",
+        //         app_secret:"3ms8r6qmPZLmznRt4kaj8EOmPsBRu3if"
+        //     },
+        //     // url:"https://www.mxnzp.com/api/weather/current/"+city,
+
+        //     // data:{
+        //     //     app_id:"qwmysolgjssrtbhw",
+        //     //     app_secret:"3ms8r6qmPZLmznRt4kaj8EOmPsBRu3if"
+        //     // },
+        //     type:"GET",
+        //     dataType:"json",
+        //     success:function(response){
+        //         console.log(response)
+        //         if(response.code==1){
+        //         // $("#result").html("城市详细地址:"+response.data.address+"<br>城市天气:"+response.data.weather+"<br>温度:"+response.data.temp+"<br>湿度:"+response.data.humidity+"<br>风向:"+response.data.windDirection+"<br>风力:"+response.data.windPower+"<br>时间:"+response.data.reportTime)
+        //         let tupianlist = $("#tupian img")
+        //         for(let i=0;i<tupianlist.length;i++){
+        //             tupianlist[i].src=response.data[i].imageUrl
+        //             tupianlist[i].size=response.data[i].imageSize
+        //         }
+                
+        //     }else{
+        //             $("#result").html(response.msg)
+        //         }
+        //     }
+            
+        // })
+
+        $.ajax({
+            // url:"https://www.mxnzp.com/api/weather/current/"+city+"?app_id=qwmysolgjssrtbhw&app_secret=3ms8r6qmPZLmznRt4kaj8EOmPsBRu3if",
+        
+            url:"https://www.mxnzp.com/api/weather/current/"+city,
+
+            data:{
+                app_id:"zafqeqj8gvpfpm1m",
+                app_secret:"pX7lu9I1jyBH4prExSWdq3ZbTnT7KkFH"
+            },
+            type:"GET",
+            dataType:"json",
+            success:function(response){
+                console.log(response)
+                if(response.code==1){
+                $("#result").html("城市详细地址:"+response.data.address+"<br>城市天气:"+response.data.weather+"<br>温度:"+response.data.temp+"<br>湿度:"+response.data.humidity+"<br>风向:"+response.data.windDirection+"<br>风力:"+response.data.windPower+"<br>时间:"+response.data.reportTime)
+              
+                
+            }else{
+                    $("#result").html(response.msg)
+                }
+            }
+            
+        })
+    })
+   
+</script>
+</body>
+</html>

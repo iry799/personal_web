@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btn1" type="button" value="查询手机号码归属地">
+    <p>
+        <input id="telno" type="text"/>
+    </p>
+    <div class="div1">
+        Hello
+    </div>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script>
+        $("#btn1").click(function(){
+            var myno = $("telno").val();
+            $.ajax({
+                type:"get",
+                url:" https://www.mxnzp.com/api/mobile_location/aim_mobile",
+                data:{
+                    mobile:myno,
+                    app_id:"zafqeqj8gvpfpm1m",
+                    app_secret:"pX7lu9I1jyBH4prExSWdq3ZbTnT7KkFH",
+                },
+                dataType:"json",
+                success:function(r){
+                    console.log(r);
+                    $(".div1").html(r.data.carrier);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

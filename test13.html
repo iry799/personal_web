@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<script src="js/jquery.min.js"></script>
+<script>
+    $("#btn").click(function(){
+        var province = $("#province").val();
+        console.log(province);
+        async function a2(){
+            var rep = await fetch('https://www.mxnzp.com/api/oil/search?province='+ province +'&app_id=zafqeqj8gvpfpm1m&app_secret=pX7lu9I1jyBH4prExSWdq3ZbTnT7KkFH',{
+                mode:'cors'
+            });
+            var result = await rep.json();
+            console.log(result);
+            return result;
+        }
+        var a2 = a2();
+        a2.then(r =>{
+            console.log(r);
+            $("#result").html(r.data[0].price);
+        });
+    }
+)
+</script>
+<body>
+    <h1>今日油价查询</h1>
+    <p>请输入省份名称：</p>
+    <input id="province" type="text"/>
+    <input id="btn" type="button" value="查询"/>
+    <div id = "result"></div>
+</body>
+</html>
